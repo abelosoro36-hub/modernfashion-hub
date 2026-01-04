@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 // Enhanced Checkout Modal with M-Pesa Integration
 function CheckoutModal({ 
   cart, 
@@ -195,125 +199,126 @@ function CheckoutModal({
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
-placeholder="john@example.com"
-/>
-</div>
-</div>
-        {/* Delivery Address */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              County *
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.county}
-              onChange={(e) => setFormData({ ...formData, county: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
-              placeholder="e.g., Nairobi"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Town *
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.town}
-              onChange={(e) => setFormData({ ...formData, town: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
-              placeholder="e.g., Westlands"
-            />
-          </div>
-        </div>
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-2">
-            Delivery Address *
-          </label>
-          <textarea
-            required
-            value={formData.address}
-            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-            rows={3}
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none resize-none"
-            placeholder="Building name, floor, apartment number, landmarks..."
-          />
-        </div>
+            {/* Delivery Address */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  County *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.county}
+                  onChange={(e) => setFormData({ ...formData, county: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
+                  placeholder="e.g., Nairobi"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Town *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.town}
+                  onChange={(e) => setFormData({ ...formData, town: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
+                  placeholder="e.g., Westlands"
+                />
+              </div>
+            </div>
 
-        {/* Payment Method */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-3">
-            Payment Method *
-          </label>
-          <div className="space-y-3">
-            <label className="flex items-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-pink-500 transition-colors">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="mpesa"
-                checked={formData.paymentMethod === 'mpesa'}
-                onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
-                className="w-4 h-4 text-pink-600"
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Delivery Address *
+              </label>
+              <textarea
+                required
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                rows={3}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none resize-none"
+                placeholder="Building name, floor, apartment number, landmarks..."
               />
-              <span className="ml-3 font-medium text-gray-900">M-Pesa (Lipa Na M-Pesa)</span>
-            </label>
-            <label className="flex items-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-pink-500 transition-colors">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="cod"
-                checked={formData.paymentMethod === 'cod'}
-                onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
-                className="w-4 h-4 text-pink-600"
-              />
-              <span className="ml-3 font-medium text-gray-900">Cash on Delivery</span>
-            </label>
-          </div>
+            </div>
+
+            {/* Payment Method */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-3">
+                Payment Method *
+              </label>
+              <div className="space-y-3">
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-pink-500 transition-colors">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="mpesa"
+                    checked={formData.paymentMethod === 'mpesa'}
+                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                    className="w-4 h-4 text-pink-600"
+                  />
+                  <span className="ml-3 font-medium text-gray-900">M-Pesa (Lipa Na M-Pesa)</span>
+                </label>
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-pink-500 transition-colors">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cod"
+                    checked={formData.paymentMethod === 'cod'}
+                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                    className="w-4 h-4 text-pink-600"
+                  />
+                  <span className="ml-3 font-medium text-gray-900">Cash on Delivery</span>
+                </label>
+              </div>
+            </div>
+
+            {formData.paymentMethod === 'mpesa' && (
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  M-Pesa Number *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.mpesaNumber}
+                  onChange={(e) => setFormData({ ...formData, mpesaNumber: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
+                  placeholder="254712345678"
+                />
+                <p className="text-sm text-gray-600 mt-2">
+                  📱 You'll receive an M-Pesa prompt to complete payment
+                </p>
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:from-pink-700 hover:to-purple-700 transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Processing...
+                </span>
+              ) : (
+                'Place Order'
+              )}
+            </button>
+          </form>
         </div>
-
-        {formData.paymentMethod === 'mpesa' && (
-          <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              M-Pesa Number *
-            </label>
-            <input
-              type="tel"
-              required
-              value={formData.mpesaNumber}
-              onChange={(e) => setFormData({ ...formData, mpesaNumber: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
-              placeholder="254712345678"
-            />
-            <p className="text-sm text-gray-600 mt-2">
-              📱 You'll receive an M-Pesa prompt to complete payment
-            </p>
-          </div>
-        )}
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:from-pink-700 hover:to-purple-700 transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSubmitting ? (
-            <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Processing...
-            </span>
-          ) : (
-            'Place Order'
-          )}
-        </button>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-);
+  );
 }

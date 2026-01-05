@@ -290,7 +290,12 @@ export default function AdminDashboard() {
                 className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all font-medium text-sm"
               >
                 📥 Export CSV
-              </button>
+              </button><button
+    onClick={() => router.push('/admin/products')}
+    className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-all font-medium text-sm"
+  >
+    📦 Manage Products
+  </button>
               <button
                 onClick={() => router.push('/')}
                 className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all font-medium text-sm"

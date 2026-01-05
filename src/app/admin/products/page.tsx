@@ -74,7 +74,6 @@ export default function AdminProductManager() {
     saveProducts(updatedProducts);
     resetForm();
     setShowAddForm(false);
-    alert(editingProduct ? 'Product updated successfully!' : 'Product added successfully!');
   };
 
   const resetForm = () => {
@@ -102,14 +101,12 @@ export default function AdminProductManager() {
     });
     setEditingProduct(product);
     setShowAddForm(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = (productId: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
     const updatedProducts = products.filter(p => p.id !== productId);
     saveProducts(updatedProducts);
-    alert('Product deleted successfully!');
   };
 
   const toggleStock = (productId: string) => {
@@ -162,7 +159,7 @@ export default function AdminProductManager() {
         {showAddForm && (
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              {editingProduct ? '✏️ Edit Product' : '➕ Add New Product'}
+              {editingProduct ? 'Edit Product' : 'Add New Product'}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -205,14 +202,14 @@ export default function AdminProductManager() {
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none"
                   >
-                    <option value="dresses">👗 Dresses</option>
-                    <option value="tops">👚 Tops & Blouses</option>
-                    <option value="bottoms">👖 Bottoms</option>
-                    <option value="outerwear">🧥 Outerwear</option>
-                    <option value="accessories">👜 Accessories</option>
-                    <option value="shoes">👠 Shoes</option>
-                    <option value="bags">👝 Bags</option>
-                    <option value="jewelry">💎 Jewelry</option>
+                    <option value="dresses">Dresses</option>
+                    <option value="tops">Tops & Blouses</option>
+                    <option value="bottoms">Bottoms</option>
+                    <option value="outerwear">Outerwear</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="bags">Bags</option>
+                    <option value="jewelry">Jewelry</option>
                   </select>
                 </div>
 
@@ -230,21 +227,6 @@ export default function AdminProductManager() {
                   />
                 </div>
               </div>
-
-              {/* Image Preview */}
-              {formData.image && (
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-sm font-semibold text-gray-700 mb-2">Image Preview:</p>
-                  <img 
-                    src={formData.image} 
-                    alt="Preview" 
-                    className="w-32 h-32 object-cover rounded-lg"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150?text=Invalid+URL';
-                    }}
-                  />
-                </div>
-              )}
 
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -268,7 +250,7 @@ export default function AdminProductManager() {
                     onChange={(e) => setFormData({ ...formData, inStock: e.target.checked })}
                     className="w-5 h-5 text-pink-600 rounded focus:ring-pink-500"
                   />
-                  <span className="text-sm font-semibold text-gray-900">✓ In Stock</span>
+                  <span className="text-sm font-semibold text-gray-900">In Stock</span>
                 </label>
 
                 <label className="flex items-center gap-3 cursor-pointer">
@@ -278,7 +260,7 @@ export default function AdminProductManager() {
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                     className="w-5 h-5 text-pink-600 rounded focus:ring-pink-500"
                   />
-                  <span className="text-sm font-semibold text-gray-900">⭐ Featured Product</span>
+                  <span className="text-sm font-semibold text-gray-900">Featured Product</span>
                 </label>
               </div>
 
@@ -287,7 +269,7 @@ export default function AdminProductManager() {
                   type="submit"
                   className="flex-1 py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl font-bold hover:from-pink-700 hover:to-purple-700 transition-all shadow-lg"
                 >
-                  {editingProduct ? '💾 Update Product' : '➕ Add Product'}
+                  {editingProduct ? 'Update Product' : 'Add Product'}
                 </button>
                 <button
                   type="button"
@@ -308,7 +290,7 @@ export default function AdminProductManager() {
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-pink-50 to-purple-50">
             <h2 className="text-xl font-bold text-gray-900">
-              📦 All Products ({products.length})
+              All Products ({products.length})
             </h2>
           </div>
 
@@ -321,7 +303,7 @@ export default function AdminProductManager() {
                 onClick={() => setShowAddForm(true)}
                 className="px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-full font-semibold hover:from-pink-700 hover:to-purple-700 transition-all"
               >
-                + Add Your First Product
+                + Add Product
               </button>
             </div>
           ) : (
@@ -329,12 +311,12 @@ export default function AdminProductManager() {
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Product</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Category</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Price</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Featured</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Product</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Category</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Price</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Featured</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -346,9 +328,6 @@ export default function AdminProductManager() {
                             src={product.image}
                             alt={product.name}
                             className="w-16 h-16 object-cover rounded-lg"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150?text=No+Image';
-                            }}
                           />
                           <div>
                             <p className="font-semibold text-gray-900">{product.name}</p>
@@ -388,13 +367,13 @@ export default function AdminProductManager() {
                             onClick={() => handleEdit(product)}
                             className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-sm font-medium"
                           >
-                            ✏️ Edit
+                            Edit
                           </button>
                           <button
                             onClick={() => handleDelete(product.id)}
                             className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all text-sm font-medium"
                           >
-                            🗑️ Delete
+                            Delete
                           </button>
                         </div>
                       </td>
